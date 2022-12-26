@@ -6,11 +6,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-            checkout([
+checkout scm:[
                     $class: 'GitSCM', 
                     includedRegions: 'test3', 
                     workspaceUpdater: [$class: 'CheckoutUpdater']
-                ])
+                ]                
                 sh 'echo 3'
             }
         }
