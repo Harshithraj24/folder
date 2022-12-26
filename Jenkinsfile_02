@@ -1,11 +1,22 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Build') {
-            steps {
-                sh 'echo 2'
-            }
-        }
+  agent {
+    node {
+      label any
     }
+  }
+
+  stages {
+    stage('checkout') {
+      steps {
+        checkout scm: [$class: 'GitSCM',
+          extensions: [
+    [$class: 'PathRestriction', excludedRegions: '', includedRegions: 'test1'],
+    [$class: 'DisableRemotePoll']
+     ],
+    ], poll: true
+    sh 'echo 1'
+      }
+    }
+  }
 }
+
