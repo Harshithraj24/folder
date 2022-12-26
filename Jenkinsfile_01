@@ -3,9 +3,9 @@ pipeline {
 
     triggers {
         pollSCM('H/5 * * * *') {
-            excludedRegions 'path/to/ignore/**'
+            includedRegions 'test2'
         }
-
+ }
     stages {
         stage('Build') {
             steps {
