@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    triggers {
+        pollSCM('H/5 * * * *') {
+            excludedRegions 'path/to/ignore/**'
+        }
+
     stages {
         stage('Build') {
             steps {
