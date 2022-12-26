@@ -4,7 +4,9 @@ pipeline {
       label any
     }
   }
-
+  triggers {
+    pollSCM 'H 20 * * 1-5'
+  }
   stages {
     stage('checkout') {
       steps {
@@ -14,7 +16,6 @@ pipeline {
     [$class: 'DisableRemotePoll']
      ],
     ], poll: true
-    sh 'echo 1'
       }
     }
   }
